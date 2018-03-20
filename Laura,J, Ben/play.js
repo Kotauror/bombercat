@@ -10,17 +10,22 @@
         map1, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board;
 
     $container = document.getElementById("container");
-    canvasW = 384;
-    canvasH = 288;
 
     map1 = [
-        [0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 0, 1, 1, 1, 1, 0],
-        [0, 1, 1, 1, 1, 0, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 0, 0, 1, 0, 0, 1, 0],
+        [0, 1, 0, 0, 1, 0, 0, 1, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 1, 2, 2, 2, 2, 2, 1, 0],
+        [0, 1, 1, 1, 1, 1, 1, 1, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
+
+    canvasW = map1[0].length * 48;
+    canvasH = map1.length * 48;
+
     mapTiles = {};
 
     function buildMap(map) {
@@ -66,12 +71,6 @@
 
     }
 
-    function handleTick() {
-
-        stage.update();
-
-    }
-
     function init() {
 
         manifest = [
@@ -109,9 +108,7 @@
         stage = new createjs.Stage(canvas);
         stage.enableMouseOver(10);
         // createjs.Touch.enable(stage);
-        createjs.Ticker.setFPS(30);
-        createjs.Ticker.useRAF = true;
-        createjs.Ticker.addEventListener("tick", handleTick);
+        createjs.Ticker.addEventListener("tick", stage);
 
         // animation frames are not required
         tileSheet = new createjs.SpriteSheet({
@@ -121,7 +118,7 @@
                 "width": 48,
                 "regX": 0,
                 "regY": 0,
-                "count": 2
+                "count": 3
             }
         });
 
