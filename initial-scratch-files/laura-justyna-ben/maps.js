@@ -1,6 +1,7 @@
 var random = function(maps) {
     return maps[Math.floor(Math.random()*maps.length)];
 }
+
 maps = [
   [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
