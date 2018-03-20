@@ -7,24 +7,15 @@
 
     var $container, canvas, stage, canvasW, canvasH,
         manifest, totalLoaded, queue,
-        map1, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board;
+        level, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board;
 
     $container = document.getElementById("container");
 
-    map1 = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 0, 0, 1, 0, 0, 1, 0],
-        [0, 1, 0, 0, 1, 0, 0, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0],
-        [0, 1, 2, 2, 2, 2, 2, 1, 0],
-        [0, 1, 1, 1, 1, 1, 1, 1, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    ];
 
-    canvasW = map1[0].length * 48;
-    canvasH = map1.length * 48;
+    level = levels;
+
+    canvasW = level[0].length * 48;
+    canvasH = level.length * 48;
 
     mapTiles = {};
 
@@ -95,7 +86,7 @@
         }
 
         function handleComplete(event) {
-            buildMap(map1);
+            buildMap(level);
         }
 
         queue = new createjs.LoadQueue(false);
