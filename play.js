@@ -132,9 +132,18 @@
             if (player) { player.gotoAndStop("stand"); }
         });
 
+        var player = new Player
+        player.stand()
+        console.log("1")
+        var column = whichColumn(player)
+        console.log("2")
+        var row = whichRow(player)
+        console.log(column)
+        console.log(row)
+
+
         function handleComplete(event) {
-            buildMap(level);
-            addPlayer(3, 2, 0);
+          buildMap(level);
         }
 
         function getCurrentLocation(player) {
@@ -146,10 +155,10 @@
           // press space to drop bomb
           getCurrentLocation(player);
           if (keysPressed[32] === 1) {
-var currentRow = whichRow(player);
-var currentColumn = whichColumn(player);
-console.log('row: ' + currentRow);
-console.log('column: ' + currentColumn);
+            var currentRow = whichRow(player);
+            var currentColumn = whichColumn(player);
+            console.log('row: ' + currentRow);
+            console.log('column: ' + currentColumn);
             // change tile to contain bomb
             levels[currentRow][currentColumn] = 2;
             handleComplete(event)
@@ -245,7 +254,6 @@ console.log('column: ' + currentColumn);
                 "regY": 0,
                 "count": 3
             }
-
         });
         tiles = new createjs.BitmapAnimation(tileSheet);
 
