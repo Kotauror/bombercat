@@ -145,13 +145,13 @@
 
             var currentRow = whichRow(player);
             var currentColumn = whichColumn(player);
+            level[currentRow][currentColumn] = 3;
             refreshLocation(event)
             // wait 1 second
 
 
 
             var delayInMilliseconds = 1000; //1 second
-            level[currentRow][currentColumn] = 3;
 
             setTimeout(function() {
               //your code to be executed after 1 second
