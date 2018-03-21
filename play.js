@@ -4,7 +4,7 @@
     'use strict';
     var $container, canvas, stage, canvasW, canvasH,
         manifest, totalLoaded, queue,
-        level, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board,
+        level, mapTiles, game, mapWidth, mapHeight, board,
         player, playerSheet, firstKey,
         keysPressed = {
           38: false,
