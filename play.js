@@ -34,7 +34,7 @@
         mapHeight = map.length;
         defineTile = {
             walkable: function (row, col) {
-                if (map[row][col] === 0 || map[row][col] === 2 ) {
+                if (map[row][col] === 0 || map[row][col] === 2 || map[row][col] === 3 ) {
                     return false;
                 } else {
                     return true;
@@ -153,16 +153,28 @@
           getCurrentLocation(player);
           if (keysPressed[32] === 1) {
 
-var currentRow = whichRow(player);
-var currentColumn = whichColumn(player);
-console.log('row: ' + currentRow);
-console.log('column: ' + currentColumn);
-            // change tile to contain bomb
-            levels[currentRow][currentColumn] = 2;
+            var currentRow = whichRow(player);
+            var currentColumn = whichColumn(player);
+            levels[currentRow][currentColumn] = 3;
             refreshLocation(event)
-            // handleComplete(event)
-            // console.log(levels[0][1]) ;
-
+            // wait 1 second
+            levels[currentRow][currentColumn] = 3;
+            if (levels[currentRow + 1][currentColumn] === 1 || levels[currentRow + 1][currentColumn] === 2) {
+              levels[currentRow + 1][currentColumn] = 4
+            }
+            if (levels[currentRow - 1][currentColumn] === 1 || levels[currentRow - 1][currentColumn] === 2) {
+              levels[currentRow - 1][currentColumn] = 4
+            }
+            if (levels[currentRow][currentColumn + 1] === 1 || levels[currentRow][currentColumn + 1] === 2) {
+              levels[currentRow][currentColumn + 1] = 4
+            }
+            if (levels[currentRow][currentColumn - 1] === 1 || levels[currentRow][currentColumn - 1] === 2) {
+              levels[currentRow][currentColumn - 1] = 4
+            }
+            refreshLocation(event)
+            // wait 1 second
+            // loop over array, change any 4 back to 1
+            // refresh again
           }
             if (keysPressed[38] === 1) { // up
                 if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
@@ -184,15 +196,19 @@ console.log('column: ' + currentColumn);
                 switch (firstKey) {
                 case 38:
                     player.rotation = 270;
+                    player.scaleX = 1;
                     break;
                 case 40:
                     player.rotation = 90;
+                    player.scaleX = 1;
                     break;
                 case 37:
                     player.rotation = 0;
+                    player.scaleX = -1;
                     break;
                 case 39:
                     player.rotation = 0;
+                    player.scaleX = 1;
                     break;
                 }
               }
@@ -240,7 +256,7 @@ console.log('column: ' + currentColumn);
         canvas = document.getElementById("canvas");
         stage = new createjs.Stage(canvas);
         stage.enableMouseOver(30);
-        createjs.Ticker.setFPS(5);
+        createjs.Ticker.setFPS(10);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.addEventListener("tick", handleTick);
         // animation frames are not required
@@ -251,7 +267,7 @@ console.log('column: ' + currentColumn);
                 "width": 48,
                 "regX": 0,
                 "regY": 0,
-                "count": 3
+                "count": 5
             }
 
         });
