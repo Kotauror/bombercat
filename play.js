@@ -1,4 +1,4 @@
-(function (tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn) {
+(function (tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer) {
   'use strict';
   var $container, canvas, stage, canvasW, canvasH,
       manifest, totalLoaded, queue,
@@ -55,44 +55,6 @@
         }
       }
     }
-    
-    function movePlayer(player, dirx, diry) {
-      var currentRow = whichRow(player);
-      console.log(currentRow);
-      var currentColumn = whichColumn(player);
-      console.log(currentColumn);
-
-      if (dirx === 0) { //moving up and down
-        if (diry === -1) { //moving up
-          player.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
-          player.rotation = 270;
-          if (player.topTile.walkable) {
-            player.y += diry * player.speed;
-          }
-        } else if (diry === 1) { //moving down
-          player.downTile = mapTiles["t_" + (currentRow + 1) + "_" + currentColumn];
-          player.rotation = 90;
-          if (player.downTile.walkable) {
-            player.y += diry * player.speed;
-          }
-        }
-      }
-      if (diry === 0) { //moving left and right
-        if (dirx === -1) { // left
-          player.leftTile = mapTiles["t_" + currentRow  + "_" + (currentColumn - 1)];
-          player.rotation = 280;
-          if (player.leftTile.walkable) {
-            player.x += dirx * player.speed;
-          }
-        } else if (dirx === 1 ){ //right
-          player.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
-          player.rotation = 0;
-          if (player.rightTile.walkable) {
-            player.x += dirx * player.speed;
-          }
-        }
-      }
-    }
 
     document.addEventListener("keydown", function (e) {
       e.preventDefault();
@@ -125,19 +87,19 @@
       }
       if (keysPressed[38] === 1) { // up
         if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
-        movePlayer(player, 0, -1);
+        movePlayer(player, 0, -1, mapTiles);
       }
       if (keysPressed[40] === 1) { // down
         if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
-        movePlayer(player, 0, 1);
+        movePlayer(player, 0, 1, mapTiles);
       }
       if (keysPressed[37] === 1) { // left
         if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
-        movePlayer(player, -1, 0);
+        movePlayer(player, -1, 0, mapTiles);
       }
       if (keysPressed[39] === 1) { // right
         if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
-        movePlayer(player, 1, 0);
+        movePlayer(player, 1, 0, mapTiles);
       }
       if (firstKey) {
         switch (firstKey) {
@@ -198,4 +160,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer));
