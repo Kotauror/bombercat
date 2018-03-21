@@ -56,20 +56,6 @@
       }
     }
 
-    // function addPlayer(x, y, rot) {
-    //   player.x = x * tileSheet._frameWidth + (tileSheet._frameWidth / 2); //initial position of the player on x - which tile
-    //   player.y = y * tileSheet._frameHeight + (tileSheet._frameHeight / 2); //initial position of the player on y  -  which tile
-    //   player.regX = 0; // how far from the edge
-    //   player.regY = 0; // how far from the edge
-    //   player.rotation = rot;
-    //   player.speed = 48;
-    //   player.height = 34;
-    //   player.width = 34;
-    //   player.delayMove = 600;
-    //   player.gotoAndStop("stand");
-    //   board.addChild(player); //adds the player to the board.
-    // }
-
     function whichColumn(player) {
       return Math.floor((player.x - player.width / 2) / tileSheet._frameWidth)
     }
