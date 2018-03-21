@@ -115,7 +115,7 @@
               player.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
               player.rotation = 0;
               if (player.rightTile.walkable) {
-                player.x += dirx * player.speed;
+                player.x += dirx * player.speed; 
               }
             }
           }
