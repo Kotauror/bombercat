@@ -155,23 +155,31 @@
 
             var currentRow = whichRow(player);
             var currentColumn = whichColumn(player);
-            levels[currentRow][currentColumn] = 3;
             refreshLocation(event)
             // wait 1 second
-            levels[currentRow][currentColumn] = 4;
-            if (levels[currentRow + 1][currentColumn] === 1 || levels[currentRow + 1][currentColumn] === 2) {
-              levels[currentRow + 1][currentColumn] = 4
-            }
-            if (levels[currentRow - 1][currentColumn] === 1 || levels[currentRow - 1][currentColumn] === 2) {
-              levels[currentRow - 1][currentColumn] = 4
-            }
-            if (levels[currentRow][currentColumn + 1] === 1 || levels[currentRow][currentColumn + 1] === 2) {
-              levels[currentRow][currentColumn + 1] = 4
-            }
-            if (levels[currentRow][currentColumn - 1] === 1 || levels[currentRow][currentColumn - 1] === 2) {
-              levels[currentRow][currentColumn - 1] = 4
-            }
-            refreshLocation(event)
+            var delayInMilliseconds = 1000; //1 second
+            levels[currentRow][currentColumn] = 3;
+
+            setTimeout(function() {
+              //your code to be executed after 1 second
+              levels[currentRow][currentColumn] = 4;
+              if (levels[currentRow + 1][currentColumn] === 1 || levels[currentRow + 1][currentColumn] === 2) {
+                levels[currentRow + 1][currentColumn] = 4
+              }
+              if (levels[currentRow - 1][currentColumn] === 1 || levels[currentRow - 1][currentColumn] === 2) {
+                levels[currentRow - 1][currentColumn] = 4
+              }
+              if (levels[currentRow][currentColumn + 1] === 1 || levels[currentRow][currentColumn + 1] === 2) {
+                levels[currentRow][currentColumn + 1] = 4
+              }
+              if (levels[currentRow][currentColumn - 1] === 1 || levels[currentRow][currentColumn - 1] === 2) {
+                levels[currentRow][currentColumn - 1] = 4
+              }
+              refreshLocation(event)
+            }, delayInMilliseconds);
+
+
+
             // wait 1 second
             // loop over array, change any 4 back to 1
             // refresh again
