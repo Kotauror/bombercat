@@ -85,10 +85,7 @@
 
         function movePlayer(player, dirx, diry) {
           var currentRow = whichRow(player);
-          console.log(currentRow);
           var currentColumn = whichColumn(player);
-          console.log(currentColumn);
-
           if (dirx === 0) { //moving up and down
             if (diry === -1) { //moving up
               player.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
@@ -137,12 +134,6 @@
             addPlayer(3, 2, 0);
         }
 
-        function getCurrentLocation(player) {
-          // console.log(player);
-          // whichRow(player)
-          // whichColumn(player)
-        }
-
         function refreshLocation(event) {
           buildMap(level);
           addPlayer(whichColumn(player), whichRow(player))
@@ -150,29 +141,52 @@
 
         function detectKeys() {
           // press space to drop bomb
-          getCurrentLocation(player);
           if (keysPressed[32] === 1) {
 
             var currentRow = whichRow(player);
             var currentColumn = whichColumn(player);
-            levels[currentRow][currentColumn] = 3;
             refreshLocation(event)
             // wait 1 second
-            levels[currentRow][currentColumn] = 4;
-            if (levels[currentRow + 1][currentColumn] === 1 || levels[currentRow + 1][currentColumn] === 2) {
-              levels[currentRow + 1][currentColumn] = 4
-            }
-            if (levels[currentRow - 1][currentColumn] === 1 || levels[currentRow - 1][currentColumn] === 2) {
-              levels[currentRow - 1][currentColumn] = 4
-            }
-            if (levels[currentRow][currentColumn + 1] === 1 || levels[currentRow][currentColumn + 1] === 2) {
-              levels[currentRow][currentColumn + 1] = 4
-            }
-            if (levels[currentRow][currentColumn - 1] === 1 || levels[currentRow][currentColumn - 1] === 2) {
-              levels[currentRow][currentColumn - 1] = 4
-            }
-            refreshLocation(event)
+
+
+
+            var delayInMilliseconds = 1000; //1 second
+            level[currentRow][currentColumn] = 3;
+
+            setTimeout(function() {
+              //your code to be executed after 1 second
+              level[currentRow][currentColumn] = 4;
+              if (level[currentRow + 1][currentColumn] === 1 || level[currentRow + 1][currentColumn] === 2) {
+                level[currentRow + 1][currentColumn] = 4
+              }
+              if (level[currentRow - 1][currentColumn] === 1 || level[currentRow - 1][currentColumn] === 2) {
+                level[currentRow - 1][currentColumn] = 4
+              }
+              if (level[currentRow][currentColumn + 1] === 1 || level[currentRow][currentColumn + 1] === 2) {
+                level[currentRow][currentColumn + 1] = 4
+              }
+              if (level[currentRow][currentColumn - 1] === 1 || level[currentRow][currentColumn - 1] === 2) {
+                level[currentRow][currentColumn - 1] = 4
+              }
+              refreshLocation(event)
+            }, delayInMilliseconds);
+
+
+
             // wait 1 second
+            var delayInMilliseconds2 = 2000; //1 second
+            setTimeout(function() {
+              for (var i = 0; i < level.length; i++) {
+                level[i]
+                var line = level[i]
+                for (var x = 0; x < line.length; x++) {
+                  if (line[x] === 4) {
+                    line[x] = 1;
+                    refreshLocation(event)
+                  }
+                }
+              }
+            }, delayInMilliseconds2);
             // loop over array, change any 4 back to 1
             // refresh again
           }
