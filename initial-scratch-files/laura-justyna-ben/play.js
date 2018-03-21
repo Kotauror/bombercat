@@ -221,7 +221,7 @@ console.log('column: ' + currentColumn);
 
         function handleComplete(event) {
             buildMap(level);
-            addPlayer(3, 2, 0);
+            addPlayer(level[0].length - (level[0].length - 1), level.length - 2, 0);
         }
         queue = new createjs.LoadQueue(false);
         // queue.installPlugin(createjs.SoundJS);
@@ -232,7 +232,7 @@ console.log('column: ' + currentColumn);
         canvas = document.getElementById("canvas");
         stage = new createjs.Stage(canvas);
         stage.enableMouseOver(30);
-        createjs.Ticker.setFPS(5);
+        createjs.Ticker.setFPS(7);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.addEventListener("tick", handleTick);
         // animation frames are not required
