@@ -2,7 +2,7 @@
 /*global Image, Audio, createjs */
 (function () {
     'use strict';
-    var $container, canvas, stage, canvasW, canvasH,
+    var container, canvas, stage, canvasW, canvasH,
         manifest, totalLoaded, queue,
         level, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board,
         player, playerSheet, firstKey,
@@ -14,7 +14,7 @@
           32: true
         };
 
-    $container = document.getElementById("container");
+    container = document.getElementById("container");
 
     level = levels;
 
