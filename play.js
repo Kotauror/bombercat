@@ -1,11 +1,10 @@
 /*jslint nomen: true, browser: true, devel: true, plusplus: true */
 /*global Image, Audio, createjs */
-(function (tiles, tileSheet) {
+(function (tiles, tileSheet, player, playerSheet) {
     'use strict';
     var $container, canvas, stage, canvasW, canvasH,
         manifest, totalLoaded, queue,
-        level, mapTiles, game, mapWidth, mapHeight, board,
-        player, playerSheet, firstKey,
+        level, mapTiles, game, mapWidth, mapHeight, board, firstKey,
         keysPressed = {
           38: false,
           40: false,
@@ -122,7 +121,7 @@
         }
 
         document.addEventListener("keydown", function (e) {
-            event.preventDefault();
+            e.preventDefault();
             keysPressed[e.keyCode] = 1;
             if (!firstKey) { firstKey = e.keyCode; }
         });
@@ -236,23 +235,23 @@ console.log('column: ' + currentColumn);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.addEventListener("tick", handleTick);
 
-        playerSheet = new createjs.SpriteSheet({
-          animations: {
-              stand: [0],
-              walk: [1, 4] // is it fluent?
-          },
-          images: ["images/player.png"],
-          frames: {
-              height: 48,
-              width: 48,
-              regX: 24, //puts it in the middle of file
-              regY: 24, //puts it in the middle of file
-              count: 5
-          }
-      });
-
-      player = new createjs.BitmapAnimation(playerSheet); //creates a new player from the image
+      //   playerSheet = new createjs.SpriteSheet({
+      //     animations: {
+      //         stand: [0],
+      //         walk: [1, 4] // is it fluent?
+      //     },
+      //     images: ["images/player.png"],
+      //     frames: {
+      //         height: 48,
+      //         width: 48,
+      //         regX: 24, //puts it in the middle of file
+      //         regY: 24, //puts it in the middle of file
+      //         count: 5
+      //     }
+      // });
+      //
+      // player = new createjs.BitmapAnimation(playerSheet); //creates a new player from the image
     }
     init();
 
-}(tiles, tileSheet));
+}(tiles, tileSheet, player, playerSheet));
