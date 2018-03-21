@@ -1,6 +1,6 @@
 /*jslint nomen: true, browser: true, devel: true, plusplus: true */
 /*global Image, Audio, createjs */
-(function () {
+(function (tiles, tileSheet) {
     'use strict';
     var $container, canvas, stage, canvasW, canvasH,
         manifest, totalLoaded, queue,
@@ -236,18 +236,18 @@ console.log('column: ' + currentColumn);
         createjs.Ticker.useRAF = true;
         createjs.Ticker.addEventListener("tick", handleTick);
         // animation frames are not required
-        tileSheet = new createjs.SpriteSheet({
-            "images": ["images/tiles.png"],
-            "frames": {
-                "height": 48,
-                "width": 48,
-                "regX": 0,
-                "regY": 0,
-                "count": 3
-            }
-
-        });
-        tiles = new createjs.BitmapAnimation(tileSheet);
+        // tileSheet = new createjs.SpriteSheet({
+        //     "images": ["images/tiles.png"],
+        //     "frames": {
+        //         "height": 48,
+        //         "width": 48,
+        //         "regX": 0,
+        //         "regY": 0,
+        //         "count": 3
+        //     }
+        //
+        // });
+        // tiles = new createjs.BitmapAnimation(tileSheet);
 
         playerSheet = new createjs.SpriteSheet({
           animations: {
@@ -268,4 +268,4 @@ console.log('column: ' + currentColumn);
     }
     init();
 
-}());
+}(tiles, tileSheet));
