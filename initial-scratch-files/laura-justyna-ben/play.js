@@ -7,10 +7,11 @@
         level, mapTiles, game, mapWidth, mapHeight, tileSheet, tiles, board,
         player, playerSheet, firstKey,
         keysPressed = {
-          38: 0,
-          40: 0,
-          37: 0,
-          39: 0
+          38: false,
+          40: false,
+          37: false,
+          39: false,
+          32: true
         };
 
     $container = document.getElementById("container");
@@ -33,7 +34,7 @@
         mapHeight = map.length;
         defineTile = {
             walkable: function (row, col) {
-                if (map[row][col] === 0) {
+                if (map[row][col] === 0 || map[row][col] === 2 ) {
                     return false;
                 } else {
                     return true;
@@ -84,7 +85,9 @@
 
         function movePlayer(player, dirx, diry) {
           var currentRow = whichRow(player);
+          console.log(currentRow);
           var currentColumn = whichColumn(player);
+          console.log(currentColumn);
 
           if (dirx === 0) { //moving up and down
             if (diry === -1) { //moving up
@@ -119,6 +122,7 @@
         }
 
         document.addEventListener("keydown", function (e) {
+            event.preventDefault();
             keysPressed[e.keyCode] = 1;
             if (!firstKey) { firstKey = e.keyCode; }
         });
@@ -128,7 +132,30 @@
             if (player) { player.gotoAndStop("stand"); }
         });
 
+        function handleComplete(event) {
+            buildMap(level);
+            addPlayer(3, 2, 0);
+        }
+
+        function getCurrentLocation(player) {
+          // console.log(player);
+          // whichRow(player)
+          // whichColumn(player)
+        }
         function detectKeys() {
+          // press space to drop bomb
+          getCurrentLocation(player);
+          if (keysPressed[32] === 1) {
+var currentRow = whichRow(player);
+var currentColumn = whichColumn(player);
+console.log('row: ' + currentRow);
+console.log('column: ' + currentColumn);
+            // change tile to contain bomb
+            levels[currentRow][currentColumn] = 2;
+            handleComplete(event)
+            // console.log(levels[0][1]) ;
+
+          }
             if (keysPressed[38] === 1) { // up
                 if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
                 movePlayer(player, 0, -1);
@@ -191,6 +218,7 @@
                 // audio.onload = handleLoadComplete;
             }
         }
+
         function handleComplete(event) {
             buildMap(level);
             addPlayer(level[0].length - (level[0].length - 1), level.length - 2, 0);
@@ -217,6 +245,7 @@
                 "regY": 0,
                 "count": 3
             }
+
         });
         tiles = new createjs.BitmapAnimation(tileSheet);
 
@@ -238,4 +267,5 @@
       player = new createjs.BitmapAnimation(playerSheet); //creates a new player from the image
     }
     init();
+
 }());
