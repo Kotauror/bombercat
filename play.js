@@ -158,7 +158,7 @@
             levels[currentRow][currentColumn] = 3;
             refreshLocation(event)
             // wait 1 second
-            levels[currentRow][currentColumn] = 3;
+            levels[currentRow][currentColumn] = 4;
             if (levels[currentRow + 1][currentColumn] === 1 || levels[currentRow + 1][currentColumn] === 2) {
               levels[currentRow + 1][currentColumn] = 4
             }
