@@ -20,3 +20,4 @@
   exports.Player = Player;
 
 }(this))
+ 
