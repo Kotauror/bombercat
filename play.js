@@ -61,7 +61,7 @@
       addPlayer(board, player, whichColumn(player), whichRow(player))
     }
 
-        function detectKeys() {
+        function detectKeys(event) {
           // press space to drop bomb
           if (keysPressed[32] === 1) {
 
