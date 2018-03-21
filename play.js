@@ -1,4 +1,4 @@
-(function (tiles, tileSheet, player, playerSheet, addPlayer) {
+(function (tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn) {
   'use strict';
   var $container, canvas, stage, canvasW, canvasH,
       manifest, totalLoaded, queue,
@@ -55,16 +55,7 @@
         }
       }
     }
-
-    function whichColumn(player) {
-      return Math.floor((player.x - player.width / 2) / tileSheet._frameWidth)
-    }
-
-    function whichRow(player) {
-      return  Math.floor((player.y - player.height / 2) / tileSheet._frameHeight);
-    }
-
-
+    
     function movePlayer(player, dirx, diry) {
       var currentRow = whichRow(player);
       console.log(currentRow);
@@ -207,4 +198,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn));

@@ -31,8 +31,18 @@
     board.addChild(player); //adds the player to the board.
   }
 
+  function whichColumn(player) {
+    return Math.floor((player.x - player.width / 2) / tileSheet._frameWidth)
+  }
+
+  function whichRow(player) {
+    return  Math.floor((player.y - player.height / 2) / tileSheet._frameHeight);
+  }
+
   exports.player = player
   exports.playerSheet = playerSheet
   exports.addPlayer = addPlayer
+  exports.whichColumn = whichColumn
+  exports.whichRow = whichRow
 
 }(this))
