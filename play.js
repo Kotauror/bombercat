@@ -1,4 +1,4 @@
-(function (tiles, tileSheet, player, playerSheet) {
+(function (tiles, tileSheet, player, playerSheet, addPlayer) {
   'use strict';
   var $container, canvas, stage, canvasW, canvasH,
       manifest, totalLoaded, queue,
@@ -56,20 +56,19 @@
       }
     }
 
-
-    function addPlayer(x, y, rot) {
-      player.x = x * tileSheet._frameWidth + (tileSheet._frameWidth / 2); //initial position of the player on x - which tile
-      player.y = y * tileSheet._frameHeight + (tileSheet._frameHeight / 2); //initial position of the player on y  -  which tile
-      player.regX = 0; // how far from the edge
-      player.regY = 0; // how far from the edge
-      player.rotation = rot;
-      player.speed = 48;
-      player.height = 34;
-      player.width = 34;
-      player.delayMove = 600;
-      player.gotoAndStop("stand");
-      board.addChild(player); //adds the player to the board.
-    }
+    // function addPlayer(x, y, rot) {
+    //   player.x = x * tileSheet._frameWidth + (tileSheet._frameWidth / 2); //initial position of the player on x - which tile
+    //   player.y = y * tileSheet._frameHeight + (tileSheet._frameHeight / 2); //initial position of the player on y  -  which tile
+    //   player.regX = 0; // how far from the edge
+    //   player.regY = 0; // how far from the edge
+    //   player.rotation = rot;
+    //   player.speed = 48;
+    //   player.height = 34;
+    //   player.width = 34;
+    //   player.delayMove = 600;
+    //   player.gotoAndStop("stand");
+    //   board.addChild(player); //adds the player to the board.
+    // }
 
     function whichColumn(player) {
       return Math.floor((player.x - player.width / 2) / tileSheet._frameWidth)
@@ -128,11 +127,6 @@
       if (firstKey === e.keyCode) { firstKey = null; }
       if (player) { player.gotoAndStop("stand"); }
     });
-
-    function handleComplete(event) {
-      buildMap(level);
-      addPlayer(3, 2, 0);
-    }
 
     function getCurrentLocation(player) {
       // console.log(player);
@@ -207,8 +201,11 @@
 
       function handleComplete(event) {
         buildMap(level);
-        addPlayer(3, 2, 0);
+        console.log("player")
+        console.log(player)
+        addPlayer(board, player, 3, 2, 0);
       }
+
       queue = new createjs.LoadQueue(false);
       queue.addEventListener("fileload", handleFileLoad);
       queue.addEventListener("complete", handleComplete);
@@ -221,7 +218,7 @@
       createjs.Ticker.useRAF = true;
       createjs.Ticker.addEventListener("tick", handleTick);
     }
-    
+
   init();
 
-}(tiles, tileSheet, player, playerSheet));
+}(tiles, tileSheet, player, playerSheet, addPlayer));
