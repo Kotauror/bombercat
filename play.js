@@ -58,7 +58,7 @@
 
     function refreshLocation(event) {
       buildMap(level);
-      addPlayer(whichColumn(player), whichRow(player))
+      addPlayer(board, player, whichColumn(player), whichRow(player))
     }
 
         function detectKeys() {
@@ -69,8 +69,6 @@
             var currentColumn = whichColumn(player);
             refreshLocation(event)
             // wait 1 second
-
-
 
             var delayInMilliseconds = 1000; //1 second
             level[currentRow][currentColumn] = 3;
