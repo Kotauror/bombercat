@@ -142,17 +142,25 @@
           // whichRow(player)
           // whichColumn(player)
         }
+
+        function refreshLocation(event) {
+          buildMap(level);
+          addPlayer(whichColumn(player), whichRow(player))
+        }
+
         function detectKeys() {
           // press space to drop bomb
           getCurrentLocation(player);
           if (keysPressed[32] === 1) {
+
 var currentRow = whichRow(player);
 var currentColumn = whichColumn(player);
 console.log('row: ' + currentRow);
 console.log('column: ' + currentColumn);
             // change tile to contain bomb
             levels[currentRow][currentColumn] = 2;
-            handleComplete(event)
+            refreshLocation(event)
+            // handleComplete(event)
             // console.log(levels[0][1]) ;
 
           }
