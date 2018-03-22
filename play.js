@@ -19,6 +19,10 @@
   canvasH = level.length * 48;
   mapTiles = {};
 
+  document.getElementById('canvas').setAttribute("style","width:" + canvasW + "px");
+  document.getElementById('canvas').setAttribute("style","height:" + canvasH + "px");
+
+
   function buildMap(map) {
     var row, col, tileClone, tileIndex, defineTile;
     if (!board) {
