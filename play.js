@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -186,6 +186,8 @@
       id: "tiles"
     }];
 
+    startMusic();
+
     function handleFileLoad(event) {
       if (event.item.type === "image") {
         var img = new Image();
@@ -217,32 +219,6 @@
 
   }
 
-  function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function() {
-      this.sound.play();
-    }
-    this.stop = function() {
-      this.sound.pause();
-    }
-  }
-
-  var myMusic;
-
-  function startGame() {
-    // myGamePiece = new component(30, 30, "red", 10, 120);
-    // mySound = new sound("bounce.mp3");
-    myMusic = new sound("music/streetfighter2turbo.mp3");
-    myMusic.play();
-    // myGameArea.start();
-  }
-  startGame();
-
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic));
