@@ -7,7 +7,7 @@
           "width": 48,
           "regX": 0,
           "regY": 0,
-          "count": 5,
+          "count": 6,
       }
 
   });
