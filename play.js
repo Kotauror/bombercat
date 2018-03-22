@@ -1,5 +1,6 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, addBomb, bombSheet, bomb) {
   'use strict';
+  console.log(bomb);
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
     level, mapTiles, game, mapWidth, mapHeight, board, firstKey,
@@ -8,9 +9,8 @@
       40: false,
       37: false,
       39: false,
-      32: true
+      32: false
     };
-
   container = document.getElementById("container");
 
   level = levels;
@@ -64,57 +64,11 @@
   function detectKeys() {
     // press space to drop bomb
     if (keysPressed[32] === 1) {
-
-      var currentRow = whichRow(player);
-      var currentColumn = whichColumn(player);
-      var bombColumn = whichColumn(player);
-      var bombRow = whichRow(player);
-      level[currentRow][currentColumn] = 3;
-      refreshLocation(event)
-      // wait 1 second
-
-      var delayInMilliseconds = 1000; //1 second
-
-      setTimeout(function() {
-        //your code to be executed after 1 second
-        level[bombRow][bombColumn] = 4;
-        if (level[bombRow + 1][bombColumn] === 1 || level[bombRow + 1][bombColumn] === 2) {
-          level[bombRow + 1][bombColumn] = 4
-        }
-        if (level[bombRow - 1][bombColumn] === 1 || level[bombRow - 1][bombColumn] === 2) {
-          level[bombRow - 1][bombColumn] = 4
-        }
-        if (level[bombRow][bombColumn + 1] === 1 || level[bombRow][bombColumn + 1] === 2) {
-          level[bombRow][bombColumn + 1] = 4
-        }
-        if (level[bombRow][bombColumn - 1] === 1 || level[bombRow][bombColumn - 1] === 2) {
-          level[bombRow][bombColumn - 1] = 4
-        }
-        refreshLocation(event)
-      }, delayInMilliseconds);
-
-
-
-      // wait 1 second
-      var delayInMilliseconds2 = 2000; //1 second
-      setTimeout(function() {
-        level[bombRow][bombColumn] = 1;
-        if (level[bombRow + 1][bombColumn] === 4) {
-          level[bombRow + 1][bombColumn] = 1
-        }
-        if (level[bombRow - 1][bombColumn] === 4) {
-          level[bombRow - 1][bombColumn] = 1
-        }
-        if (level[bombRow][bombColumn + 1] === 4) {
-          level[bombRow][bombColumn + 1] = 1
-        }
-        if (level[bombRow][bombColumn - 1] === 4) {
-          level[bombRow][bombColumn - 1] = 1
-        }
-        refreshLocation(event)
-      }, delayInMilliseconds2);
-      // loop over array, change any 4 back to 1
-      // refresh again
+      console.log('muuu');
+      var playerColumn = whichColumn(player);
+      var playerRow = whichRow(player);
+      console.log(player);
+      addBomb(level, board, bomb, playerColumn, playerRow);
     }
     if (keysPressed[38] === 1) { // up
       if (player.currentAnimation !== "walk") {
@@ -230,4 +184,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, addBomb, bombSheet, bomb));
