@@ -89,19 +89,133 @@
         if (level[currentRow][currentColumn - 1] === 1 || level[currentRow][currentColumn - 1] === 2) {
           level[currentRow][currentColumn - 1] = 4
         }
-        refreshLocation(event)
-      }, delayInMilliseconds);
 
-      // wait 1 second
-      var delayInMilliseconds2 = 2000; //1 second
-      setTimeout(function() {
-        for (var i = 0; i < level.length; i++) {
-          level[i]
-          var line = level[i]
-          for (var x = 0; x < line.length; x++) {
-            if (line[x] === 4) {
-              line[x] = 1;
+        function detectKeys() {
+          // press space to drop bomb
+          if (keysPressed[32] === 1) {
+
+            var currentRow = whichRow(player);
+            var currentColumn = whichColumn(player);
+            level[currentRow][currentColumn] = 3;
+            refreshLocation(event)
+            // wait 1 second
+
+
+
+            var delayInMilliseconds = 1000; //1 second
+
+            setTimeout(function() {
+              //your code to be executed after 1 second
+              level[currentRow][currentColumn] = 4;
+              if (level[currentRow + 1][currentColumn] === 1 || level[currentRow + 1][currentColumn] === 2) {
+                level[currentRow + 1][currentColumn] = 4
+              }
+              if (level[currentRow - 1][currentColumn] === 1 || level[currentRow - 1][currentColumn] === 2) {
+                level[currentRow - 1][currentColumn] = 4
+              }
+              if (level[currentRow][currentColumn + 1] === 1 || level[currentRow][currentColumn + 1] === 2) {
+                level[currentRow][currentColumn + 1] = 4
+              }
+              if (level[currentRow][currentColumn - 1] === 1 || level[currentRow][currentColumn - 1] === 2) {
+                level[currentRow][currentColumn - 1] = 4
+              }
               refreshLocation(event)
+            }, delayInMilliseconds);
+
+
+
+            // wait 1 second
+
+            console.time('UniquetLabelName')
+            // perhaps we should record each bombs position and go directly to it
+            // instead of the loop
+            var delayInMilliseconds2 = 2000; //1 second
+            setTimeout(function() {
+              for (var i = 0; i < level.length; i++) {
+                level[i]
+                var line = level[i]
+                for (var x = 0; x < line.length; x++) {
+                  if (line[x] === 4) {
+                    line[x] = 1;
+                    refreshLocation(event)
+                  }
+                  // I'm suspecting that when the speed slows, this code happens
+                  // far more times then it should. We could try to use a
+                  // call back function or asynchronous code.
+                  //
+                  // https://stackoverflow.com/questions/41218507/violation-long-running-javascript-task-took-xx-ms/41218580
+                  // see here
+                  console.timeEnd('UniqueLabelmu')
+                }
+              }
+            }, delayInMilliseconds2);
+            // loop over array, change any 4 back to 1
+            // refresh again
+          }
+            if (keysPressed[38] === 1) { // up
+                if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
+                movePlayer(player, 0, -1);
+            }
+            if (keysPressed[40] === 1) { // down
+                if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
+                movePlayer(player, 0, 1);
+            }
+            if (keysPressed[37] === 1) { // left
+                if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
+                movePlayer(player, -1, 0);
+            }
+            if (keysPressed[39] === 1) { // right
+                if (player.currentAnimation !== "walk") { player.gotoAndPlay("walk"); }
+                movePlayer(player, 1, 0);
+            }
+            if (firstKey) {
+                switch (firstKey) {
+                case 38:
+                    player.rotation = 270;
+                    player.scaleX = 1;
+                    break;
+                case 40:
+                    player.rotation = 90;
+                    player.scaleX = 1;
+                    break;
+                case 37:
+                    player.rotation = 0;
+                    player.scaleX = -1;
+                    break;
+                case 39:
+                    player.rotation = 0;
+                    player.scaleX = 1;
+                    break;
+                }
+              }
+        }
+
+
+        function handleTick() {
+          detectKeys();
+          stage.update();
+        }
+
+
+
+
+    function init() {
+        manifest = [
+            {src: "images/tiles.png", id: "tiles"}
+        ];
+        // totalLoaded = 0;
+        // function handleLoadComplete(event) {
+        //     totalLoaded++;
+        // }
+        function handleFileLoad(event) {
+            if (event.item.type === "image") {
+                var img = new Image();
+                img.src = event.item.src;
+                // img.onload = handleLoadComplete;
+            } else if (event.item.type === "sound") {
+                var audio = new Audio();
+                audio.src = event.item.src;
+                // audio.onload = handleLoadComplete;
             }
           }
         }
@@ -215,6 +329,32 @@
 
   }
 
-  init();
+
+    function sound(src) {
+        this.sound = document.createElement("audio");
+        this.sound.src = src;
+        this.sound.setAttribute("preload", "auto");
+        this.sound.setAttribute("controls", "none");
+        this.sound.style.display = "none";
+        document.body.appendChild(this.sound);
+        this.play = function(){
+            this.sound.play();
+        }
+        this.stop = function(){
+            this.sound.pause();
+        }
+    }
+
+var myMusic;
+
+function startGame() {
+    // myGamePiece = new component(30, 30, "red", 10, 120);
+    // mySound = new sound("bounce.mp3");
+    myMusic = new sound("music/streetfighter2turbo.mp3");
+    myMusic.play();
+    // myGameArea.start();
+}
+startGame();
+    init();
 
 }(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer));
