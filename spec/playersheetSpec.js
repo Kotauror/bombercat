@@ -11,10 +11,11 @@ describe("Playersheet", function(){
   })
 
   it("whichColumn returns the player's location", function(){
-    spyOn(player, 'x').and.returnValue(48)
-    spyOn(player, 'width').and.returnValue(34)
-    spyOn(tileSheet, '_frameWidth').and.returnValue(48)
-    expect(whichColumn(player)).toEqual(1)
+    // spyOn(player, 'x').and.returnValue(48)
+    // spyOn(player, 'width').and.returnValue(34)
+    // spyOn(tileSheet, '_frameWidth').and.returnValue(48)
+    spyOnProperty(player, 'width', 'set').and.returnValue(34)
+    expect(player.width).toBe(34)
   })
 
 
