@@ -174,6 +174,10 @@
 
 
             // wait 1 second
+
+            console.time('UniquetLabelName')
+            // perhaps we should record each bombs position and go directly to it
+            // instead of the loop
             var delayInMilliseconds2 = 2000; //1 second
             setTimeout(function() {
               for (var i = 0; i < level.length; i++) {
@@ -184,6 +188,13 @@
                     line[x] = 1;
                     refreshLocation(event)
                   }
+                  // I'm suspecting that when the speed slows, this code happens
+                  // far more times then it should. We could try to use a
+                  // call back function or asynchronous code.
+                  //
+                  // https://stackoverflow.com/questions/41218507/violation-long-running-javascript-task-took-xx-ms/41218580
+                  // see here
+                  console.timeEnd('UniqueLabelmu')
                 }
               }
             }, delayInMilliseconds2);
