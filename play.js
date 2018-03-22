@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -61,7 +61,7 @@
     addPlayer(board, player, whichColumn(player), whichRow(player))
   }
 
-  function detectKeys() {
+  function detectKeys(event) {
     // press space to drop bomb
     if (keysPressed[32] === 1) {
 
@@ -158,6 +158,7 @@
 
 
   function handleTick() {
+    playerAtDoor(level);
     detectKeys();
     stage.update();
   }
@@ -221,4 +222,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor));

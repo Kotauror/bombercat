@@ -77,11 +77,20 @@
     }
   }
 
+  playerAtDoor = function(level){
+    var playerRow = whichRow(player);
+    var playerColumn = whichColumn(player);
+    if (level[playerRow][playerColumn] === 5){
+      location.reload();
+    }
+  };
+
   exports.player = player
   exports.playerSheet = playerSheet
   exports.addPlayer = addPlayer
   exports.whichColumn = whichColumn
   exports.whichRow = whichRow
   exports.movePlayer = movePlayer
+  exports.playerAtDoor = playerAtDoor
 
 }(this))
