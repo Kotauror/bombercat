@@ -4,7 +4,9 @@ describe("maps", function(){
   })
 
   it("the levels array contains arrays", function(){
-    expect(levels[0]).toEqual(jasmine.any(Array))
+    for (var i in levels ){
+      expect(levels[i]).toEqual(jasmine.any(Array))
+    }
   })
 
   it("the arrays in the array contains numbers", function(){
