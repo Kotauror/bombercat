@@ -8,8 +8,17 @@ body {
   margin: 0em;
 }
 
+#logo {
+width: 30%;
+height: 30%;
+margin-left: auto;
+margin-right: auto;
+display: block;
+}
+
+
 #container {
-  padding-top: 6em;
+  /* padding-top: 1em; */
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -28,6 +37,8 @@ body {
 }
 
 #about_us {
+  position: absolute;
+  bottom: 0;
   padding: 0.5em;
   padding-right: 1em;
   height: fit-content;
