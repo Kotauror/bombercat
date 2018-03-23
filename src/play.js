@@ -1,7 +1,7 @@
 (function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf, wolfDeath) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
-    manifest, totalLoaded, queue,
+    manifest, totalLoaded, queue, bombCount, count,
     level, mapTiles, game, mapWidth, mapHeight, board, firstKey,
     keysPressed = {
       38: false,
@@ -14,6 +14,10 @@
   container = document.getElementById("container");
 
   level = levels;
+
+  bombCount = 5
+
+  count = 0
 
   canvasW = level[0].length * 48;
   canvasH = level.length * 48;
@@ -72,6 +76,8 @@
     // press space to drop bomb
     if (keysPressed[32] === 1) {
 
+      if (bombCount > 0) {
+
       var currentRow = whichRow(player);
       var currentColumn = whichColumn(player);
       var bombColumn = whichColumn(player);
@@ -103,7 +109,7 @@
 
 
       // wait 1 second
-      var delayInMilliseconds2 = 2000; //1 second
+      var delayInMilliseconds2 = 1400; //1 second
       setTimeout(function() {
         level[bombRow][bombColumn] = 1;
         if (level[bombRow + 1][bombColumn] === 4) {
@@ -120,6 +126,9 @@
         }
         refreshLocation(event)
       }, delayInMilliseconds2);
+
+      bombCount -= 1
+    }
       // loop over array, change any 4 back to 1
       // refresh again
     }
@@ -177,8 +186,11 @@
     wolfDeath(level)
     detectKeys();
     stage.update();
-    moveDog(dog, mapTiles);
-    moveWolf(wolf, mapTiles);
+    if (count % 3 === 0) {
+      moveDog(dog, mapTiles);
+      moveWolf(wolf, mapTiles);
+    }
+    count += 1
   }
 
   document.addEventListener("keydown", function(e) {
@@ -218,6 +230,7 @@
     }
 
     function handleComplete(event) {
+      alert("You have 5 bombs to get to the box")
       buildMap(level);
       addPlayer(board, player, 3, 2, 0);
       addDog(board, dog, 10, 8, 0);
