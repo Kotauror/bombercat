@@ -9,27 +9,30 @@ describe("Playersheet", function(){
   })
 
   describe("addPlayer", function(){
+
+    var board
+    var tileSheet
+
     beforeEach(function(){
-      var board = jasmine.createSpyObj('board', ['addChild'])
-      spyOn(tileSheet, '_frameWidth').and.returnValue(2)
-      spyOn(tileSheet, '_frameHeight').and.returnValue(2)
-      addPlayer(board, player, 1, 1, 1)
+      board = jasmine.createSpyObj(board, ['addChild'])
+      tileSheet = jasmine.createSpyObj('tileSheet', {
+        '_frameWidth': 2,
+        '_frameHeight': 2
+      })
     })
 
-    xit('sets the player x attribute', function(){
-
+    it('sets the player x attribute', function(){
+      addPlayer(board, player, 1, 1, 1)
+      expect(player.x).toEqual(72)
     })
 
     it('adds the player to the board', function(){
+      addPlayer(board, player, 1, 1, 1)
       expect(board.addChild).toHaveBeenCalledWith(player)
     })
   })
 
-  // xit("whichColumn returns the player's location", function(){
-  //   // spyOn(player, 'x').and.returnValue(48)
-  //   // spyOn(player, 'width').and.returnValue(34)
-  //   // spyOn(tileSheet, '_frameWidth').and.returnValue(48)
-  //   spyOnProperty(player, 'width', 'set').and.returnValue(34)
+  // it("whichColumn returns the player's location", function(){
   //   expect(player.width).toBe(34)
   // })
 
