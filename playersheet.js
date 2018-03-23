@@ -14,7 +14,6 @@
       count: 5
     }
   });
-  console.log(playerSheet);
   player = new createjs.BitmapAnimation(playerSheet); //creates a new player from the image
 
   function addPlayer(board, player, x, y, rot) {
@@ -41,9 +40,7 @@
 
   function movePlayer(player, dirx, diry, mapTiles) {
     var currentRow = whichRow(player);
-    console.log(currentRow);
     var currentColumn = whichColumn(player);
-    console.log(currentColumn);
 
     if (dirx === 0) { //moving up and down
       if (diry === -1) { //moving up

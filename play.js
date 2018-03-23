@@ -64,10 +64,8 @@
   function detectKeys() {
     // press space to drop bomb
     if (keysPressed[32] === 1) {
-      console.log('muuu');
       var playerColumn = whichColumn(player);
       var playerRow = whichRow(player);
-      console.log(player);
       addBomb(level, board, bomb, playerColumn, playerRow);
     }
     if (keysPressed[38] === 1) { // up
