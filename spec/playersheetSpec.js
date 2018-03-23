@@ -54,5 +54,5 @@ describe("Playersheet", function(){
       expect(whichRow(player)).toEqual(1)
     })
   })
-  
+
 })

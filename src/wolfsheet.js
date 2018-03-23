@@ -92,9 +92,18 @@
     }
   }
 
+  wolfDeath = function(level) {
+    var wolfRow = whichRow(wolf);
+    var wolfColumn = whichColumn(wolf);
+    if (level[wolfRow][wolfColumn] === 4){
+      wolf.speed = 0
+    }
+  }
+
   exports.wolf = wolf
   exports.wolfSheet = wolfSheet
   exports.addWolf = addWolf
   exports.moveWolf= moveWolf
+  exports.wolfDeath
 
 }(this))
