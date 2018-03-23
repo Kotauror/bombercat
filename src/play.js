@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf, wolfDeath) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -64,6 +64,8 @@
     buildMap(level);
     addPlayer(board, player, whichColumn(player), whichRow(player))
     addDog(board, dog, whichColumn(dog), whichRow(dog), 0);
+    addWolf(board, wolf, whichColumn(wolf), whichRow(wolf), 0);
+
   }
 
   function detectKeys(event) {
@@ -170,9 +172,13 @@
   function handleTick() {
     playerAtDoor(level);
     playerDeath(level);
+    playerAtDog(level);
+    playerAtWolf(level);
+    wolfDeath(level)
     detectKeys();
     stage.update();
     moveDog(dog, mapTiles);
+    moveWolf(wolf, mapTiles);
   }
 
   document.addEventListener("keydown", function(e) {
@@ -215,6 +221,7 @@
       buildMap(level);
       addPlayer(board, player, 3, 2, 0);
       addDog(board, dog, 10, 8, 0);
+      addWolf(board, wolf, 3, 5, 0);
     }
 
     queue = new createjs.LoadQueue(false);
@@ -233,4 +240,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf, wolfDeath));
