@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -63,7 +63,7 @@
   function refreshLocation(event) {
     buildMap(level);
     addPlayer(board, player, whichColumn(player), whichRow(player))
-    addDog(board, dog, 4, 2, 0);
+    addDog(board, dog, whichColumn(dog), whichRow(dog), 0);
   }
 
   function detectKeys(event) {
@@ -173,6 +173,7 @@
     playerDeath(level);
     detectKeys();
     stage.update();
+    moveDog(dog, mapTiles)
   }
 
   document.addEventListener("keydown", function(e) {
@@ -233,4 +234,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog));

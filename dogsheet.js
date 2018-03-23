@@ -18,13 +18,12 @@
   dog = new createjs.BitmapAnimation(dogSheet);
 
   function addDog(board, dog, x, y, rot) {
-       dog = dog.clone();
        dog.x = x * tileSheet._frameWidth + (tileSheet._frameWidth / 2);
        dog.y = y * tileSheet._frameHeight + (tileSheet._frameHeight / 2);
        dog.regX = 0;
        dog.regY = 0;
        dog.rotation = rot;
-       dog.speed = 2;
+       dog.speed = 10;
        dog.height = 34;
        dog.width = 34;
        dog.gotoAndPlay("walk");
@@ -32,70 +31,69 @@
    }
 
 
-  // function whichColumn(player) {
-  //   return Math.floor((player.x - player.width / 2) / tileSheet._frameWidth)
-  // }
-  //
-  // function whichRow(player) {
-  //   return  Math.floor((player.y - player.height / 2) / tileSheet._frameHeight);
-  // }
-  //
-  // function movePlayer(player, dirx, diry, mapTiles) {
-  //   var currentRow = whichRow(player);
-  //   console.log(currentRow);
-  //   var currentColumn = whichColumn(player);
-  //   console.log(currentColumn);
-  //
-  //   if (dirx === 0) { //moving up and down
-  //     if (diry === -1) { //moving up
-  //       player.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
-  //       player.rotation = 270;
-  //       if (player.topTile.walkable) {
-  //         player.y += diry * player.speed;
-  //       }
-  //     } else if (diry === 1) { //moving down
-  //       player.downTile = mapTiles["t_" + (currentRow + 1) + "_" + currentColumn];
-  //       player.rotation = 90;
-  //       if (player.downTile.walkable) {
-  //         player.y += diry * player.speed;
-  //       }
-  //     }
-  //   }
-  //   if (diry === 0) { //moving left and right
-  //     if (dirx === -1) { // left
-  //       player.leftTile = mapTiles["t_" + currentRow  + "_" + (currentColumn - 1)];
-  //       player.rotation = 280;
-  //       if (player.leftTile.walkable) {
-  //         player.x += dirx * player.speed;
-  //       }
-  //     } else if (dirx === 1 ){ //right
-  //       player.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
-  //       player.rotation = 0;
-  //       if (player.rightTile.walkable) {
-  //         player.x += dirx * player.speed;
-  //       }
-  //     }
-  //   }
-  // }
-  //
-  // playerAtDoor = function(level){
-  //   var playerRow = whichRow(player);
-  //   var playerColumn = whichColumn(player);
-  //   if (level[playerRow][playerColumn] === 5){
-  //     location.reload();
-  //   }
-  // };
-  //
-  // playerDeath = function(level){
-  //   var playerRow = whichRow(player);
-  //   var playerColumn = whichColumn(player);
-  //   if (level[playerRow][playerColumn] === 4){
-  //     location.reload();
-  //   }
-  // }
+   function whichColumn(dog) {
+     return Math.floor((dog.x - dog.width / 2) / tileSheet._frameWidth)
+   }
+
+   function whichRow(dog) {
+     return  Math.floor((dog.y - dog.height / 2) / tileSheet._frameHeight);
+   }
+
+  function randomisex() {
+    myArray = [0,1]
+    var rand = myArray[Math.floor(Math.random() * myArray.length)];
+    return rand
+  }
+
+  function randomisey() {
+    myArray = [0,1]
+    var rand = myArray[Math.floor(Math.random() * myArray.length)];
+    return rand
+  }
+
+  function moveDog(dog, mapTiles) {
+    var currentRow = whichColumn(dog);
+    var currentColumn = whichRow(dog);
+    var dirx = randomisex()
+    var diry = randomisey()
+
+    console.log(mapTiles)
+
+    if (dirx === 0) { //moving up and down
+      if (diry === -1) { //moving up
+        dog.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
+        dog.rotation = 270;
+        if (dog.topTile.walkable) {
+          dog.y += diry * dog.speed;
+        }
+      } else if (diry === 1) { //moving down
+        dog.downTile = mapTiles["t_" + (currentRow + 1) + "_" + currentColumn];
+        dog.rotation = 90;
+        if (dog.downTile.walkable) {
+          dog.y += diry * dog.speed;
+        }
+      }
+    }
+    if (diry === 0) { //moving left and right
+      if (dirx === -1) { // left
+        dog.leftTile = mapTiles["t_" + currentRow  + "_" + (currentColumn - 1)];
+        dog.rotation = 280;
+        if (dog.leftTile.walkable) {
+          dog.x += dirx * dog.speed;
+        }
+      } else if (dirx === 1 ){ //right
+        dog.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
+        dog.rotation = 0;
+        if (dog.rightTile.walkable) {
+          dog.x += dirx * dog.speed;
+        }
+      }
+    }
+  }
 
   exports.dog = dog
   exports.dogSheet = dogSheet
   exports.addDog = addDog
+  exports.moveDog = moveDog
 
 }(this))
