@@ -10,13 +10,16 @@ describe('Play', function() {
   it('addPlayer is defined', function(){
     expect(addPlayer).toBeDefined()
   })
-  // it('whichColumn is defined', function(){
-  //   expect(whichColumn()).toBeDefined()
-  // })
-  // it('whichRow is defined', function(){
-  //   expect(whichRow()).toBeDefined()
-  // })
-  // it('movePlayer is defined', function(){
-  //   expect(movePlayer()).toBeDefined()
-  // })
+
+  it('whichColumn is defined', function () {
+    expect(whichColumn).toBeDefined()
+  })
+
+  it('whichRow is defined', function(){
+    expect(whichRow).toBeDefined()
+  })
+
+  it('movePlayer is defined', function () {
+    expect(movePlayer).toBeDefined()
+  })
 })
