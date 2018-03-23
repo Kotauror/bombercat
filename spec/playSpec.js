@@ -38,6 +38,21 @@ describe('Play', function() {
   it('moveDog is defined', function(){
     expect(moveDog).toBeDefined()
   })
+  it('wolf is defined', function(){
+    expect(wolf).toBeDefined()
+  })
+  it('wolfSheet is defined', function(){
+    expect(wolfSheet).toBeDefined()
+  })
+  it('addWolf is defined', function(){
+    expect(addWolf).toBeDefined()
+  })
+  it('addWolf is defined', function(){
+    expect(addWolf).toBeDefined()
+  })
+  it('wolfDeath is defined', function(){
+    expect(wolfDeath).toBeDefined()
+  })
 
 
 })
