@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf, wolfDeath) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -174,6 +174,7 @@
     playerDeath(level);
     playerAtDog(level);
     playerAtWolf(level);
+    wolfDeath(level)
     detectKeys();
     stage.update();
     moveDog(dog, mapTiles);
@@ -239,4 +240,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, wolf, wolfSheet, addWolf, moveWolf, playerAtDog, playerAtWolf, wolfDeath));
