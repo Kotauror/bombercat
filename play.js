@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -63,6 +63,7 @@
   function refreshLocation(event) {
     buildMap(level);
     addPlayer(board, player, whichColumn(player), whichRow(player))
+    addDog(board, dog, 4, 2, 0);
   }
 
   function detectKeys(event) {
@@ -213,6 +214,7 @@
     function handleComplete(event) {
       buildMap(level);
       addPlayer(board, player, 3, 2, 0);
+      addDog(board, dog, 4, 2, 0);
     }
 
     queue = new createjs.LoadQueue(false);
@@ -231,4 +233,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog));
