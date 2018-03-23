@@ -167,13 +167,12 @@
     }
   }
 
-
   function handleTick() {
     playerAtDoor(level);
     playerDeath(level);
     detectKeys();
     stage.update();
-    moveDog(dog, mapTiles)
+    moveDog(dog, mapTiles);
   }
 
   document.addEventListener("keydown", function(e) {
@@ -215,7 +214,7 @@
     function handleComplete(event) {
       buildMap(level);
       addPlayer(board, player, 3, 2, 0);
-      addDog(board, dog, 4, 2, 0);
+      addDog(board, dog, 10, 8, 0);
     }
 
     queue = new createjs.LoadQueue(false);

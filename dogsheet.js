@@ -23,9 +23,10 @@
        dog.regX = 0;
        dog.regY = 0;
        dog.rotation = rot;
-       dog.speed = 10;
+       dog.speed = 48;
        dog.height = 34;
        dog.width = 34;
+       dog.delayMove = 600;
        dog.gotoAndPlay("walk");
        board.addChild(dog);
    }
@@ -39,51 +40,59 @@
      return  Math.floor((dog.y - dog.height / 2) / tileSheet._frameHeight);
    }
 
-  function randomisex() {
-    myArray = [0,1]
-    var rand = myArray[Math.floor(Math.random() * myArray.length)];
-    return rand
+  function pickDirection() {
+    myArray = ["dirx", "diry"]
+    var direction = myArray[Math.floor(Math.random() * myArray.length)];
+    return direction
   }
 
-  function randomisey() {
-    myArray = [0,1]
-    var rand = myArray[Math.floor(Math.random() * myArray.length)];
-    return rand
+  function pickValue() {
+    myArray = [1, -1]
+    var value = myArray[Math.floor(Math.random() * myArray.length)];
+    return value
   }
 
   function moveDog(dog, mapTiles) {
-    var currentRow = whichColumn(dog);
-    var currentColumn = whichRow(dog);
-    var dirx = randomisex()
-    var diry = randomisey()
+    var currentColumn = whichColumn(dog);
+    var currentRow = whichRow(dog);
+    console.log(currentRow)
+    console.log(currentColumn)
+    var direction = pickDirection()
+    console.log(direction)
 
-    console.log(mapTiles)
-
-    if (dirx === 0) { //moving up and down
+    if (direction === "diry") { //moving up and down
+      var diry = pickValue()
+      console.log(diry)
       if (diry === -1) { //moving up
         dog.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
         dog.rotation = 270;
+        console.log(dog.topTile.walkable)
         if (dog.topTile.walkable) {
           dog.y += diry * dog.speed;
         }
       } else if (diry === 1) { //moving down
         dog.downTile = mapTiles["t_" + (currentRow + 1) + "_" + currentColumn];
         dog.rotation = 90;
+        console.log(dog.downTile.walkable)
         if (dog.downTile.walkable) {
           dog.y += diry * dog.speed;
         }
       }
     }
-    if (diry === 0) { //moving left and right
+    if (direction === "dirx") { //moving left and right
+      var dirx = pickValue()
+      console.log(dirx)
       if (dirx === -1) { // left
         dog.leftTile = mapTiles["t_" + currentRow  + "_" + (currentColumn - 1)];
         dog.rotation = 280;
+        console.log(dog.leftTile.walkable)
         if (dog.leftTile.walkable) {
           dog.x += dirx * dog.speed;
         }
       } else if (dirx === 1 ){ //right
         dog.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
         dog.rotation = 0;
+        console.log(dog.rightTile.walkable)
         if (dog.rightTile.walkable) {
           dog.x += dirx * dog.speed;
         }
