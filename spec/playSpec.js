@@ -22,4 +22,8 @@ describe('Play', function() {
   it('movePlayer is defined', function () {
     expect(movePlayer).toBeDefined()
   })
+
+  it('startMusic is defined', function(){
+    expect(startMusic).toBeDefined()
+  })
 })
