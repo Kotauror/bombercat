@@ -20,12 +20,12 @@ describe("Dogsheet", function(){
       })
     })
 
-    it('sets the player x attribute', function(){
+    it('sets the dog x attribute', function(){
       addDog(board, dog, 1, 1, 1)
-      expect(player.x).toEqual(72)
+      expect(dog.x).toEqual(72)
     })
 
-    it('adds the player to the board', function(){
+    it('adds the dog to the board', function(){
       addDog(board, dog, 1, 1, 1)
       expect(board.addChild).toHaveBeenCalledWith(dog)
     })
