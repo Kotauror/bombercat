@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, playerAtDog) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -170,6 +170,7 @@
   function handleTick() {
     playerAtDoor(level);
     playerDeath(level);
+    playerAtDog(level);
     detectKeys();
     stage.update();
     moveDog(dog, mapTiles);
@@ -233,4 +234,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath, dog, dogSheet, addDog, moveDog, playerAtDog));

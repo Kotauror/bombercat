@@ -41,9 +41,7 @@
 
   function movePlayer(player, dirx, diry, mapTiles) {
     var currentRow = whichRow(player);
-    console.log(currentRow);
     var currentColumn = whichColumn(player);
-    console.log(currentColumn);
 
     if (dirx === 0) { //moving up and down
       if (diry === -1) { //moving up
@@ -77,6 +75,17 @@
     }
   }
 
+  playerAtDog = function(level) {
+    var playerRow = whichRow(player);
+    var playerColumn = whichColumn(player);
+    var dogRow = whichRow(dog);
+    var dogColumn = whichColumn(dog);
+    if (playerRow === dogRow && playerColumn === dogColumn) {
+      alert("Game Over\n\n Dog caught the cat\n\n Click enter to play again");
+      location.reload();
+    }
+  }
+
   playerAtDoor = function(level){
     var playerRow = whichRow(player);
     var playerColumn = whichColumn(player);
@@ -100,5 +109,6 @@
   exports.whichRow = whichRow
   exports.movePlayer = movePlayer
   exports.playerAtDoor = playerAtDoor
+  exports.playerAtDog = playerAtDog
 
 }(this))

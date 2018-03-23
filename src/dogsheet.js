@@ -55,25 +55,20 @@
   function moveDog(dog, mapTiles) {
     var currentColumn = whichColumn(dog);
     var currentRow = whichRow(dog);
-    console.log(currentRow)
-    console.log(currentColumn)
     var direction = pickDirection()
-    console.log(direction)
+
 
     if (direction === "diry") { //moving up and down
       var diry = pickValue()
-      console.log(diry)
       if (diry === -1) { //moving up
         dog.topTile = mapTiles["t_" + (currentRow - 1) + "_" + currentColumn];
         dog.rotation = 270;
-        console.log(dog.topTile.walkable)
         if (dog.topTile.walkable) {
           dog.y += diry * dog.speed;
         }
       } else if (diry === 1) { //moving down
         dog.downTile = mapTiles["t_" + (currentRow + 1) + "_" + currentColumn];
         dog.rotation = 90;
-        console.log(dog.downTile.walkable)
         if (dog.downTile.walkable) {
           dog.y += diry * dog.speed;
         }
@@ -81,18 +76,15 @@
     }
     if (direction === "dirx") { //moving left and right
       var dirx = pickValue()
-      console.log(dirx)
       if (dirx === -1) { // left
         dog.leftTile = mapTiles["t_" + currentRow  + "_" + (currentColumn - 1)];
         dog.rotation = 280;
-        console.log(dog.leftTile.walkable)
         if (dog.leftTile.walkable) {
           dog.x += dirx * dog.speed;
         }
       } else if (dirx === 1 ){ //right
         dog.rightTile = mapTiles["t_" + currentRow  + "_" + (currentColumn + 1)];
         dog.rotation = 0;
-        console.log(dog.rightTile.walkable)
         if (dog.rightTile.walkable) {
           dog.x += dirx * dog.speed;
         }
