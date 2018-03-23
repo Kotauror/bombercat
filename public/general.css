@@ -1,0 +1,36 @@
+html {
+  background-image: url("https://media.giphy.com/media/ZrlFjwhclknWE/giphy.gif");
+  font-family: Work Sans;
+  margin: 0em;
+}
+
+body {
+  margin: 0em;
+}
+
+#container {
+  padding-top: 6em;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#canvas {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+#button {
+  float: left;
+  margin-top: 1em;
+  margin-left: 1em;
+}
+
+#about_us {
+  padding: 0.5em;
+  padding-right: 1em;
+  height: fit-content;
+  width: 100%;
+  color: black;
+}

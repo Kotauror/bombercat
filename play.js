@@ -1,4 +1,4 @@
-(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic) {
+(function(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath) {
   'use strict';
   var container, canvas, stage, canvasW, canvasH,
     manifest, totalLoaded, queue,
@@ -18,6 +18,10 @@
   canvasW = level[0].length * 48;
   canvasH = level.length * 48;
   mapTiles = {};
+
+  document.getElementById('canvas').setAttribute("style","width:" + canvasW + "px");
+  document.getElementById('canvas').setAttribute("style","height:" + canvasH + "px");
+
 
   function buildMap(map) {
     var row, col, tileClone, tileIndex, defineTile;
@@ -61,7 +65,7 @@
     addPlayer(board, player, whichColumn(player), whichRow(player))
   }
 
-  function detectKeys() {
+  function detectKeys(event) {
     // press space to drop bomb
     if (keysPressed[32] === 1) {
 
@@ -164,11 +168,8 @@
 
 
   function handleTick() {
-    var playerRow = whichRow(player);
-    var playerColumn = whichColumn(player);
-    if (level[playerRow][playerColumn] === 4) {
-      location.reload();
-    }
+    playerAtDoor(level);
+    playerDeath(level);
     detectKeys();
     stage.update();
   }
@@ -230,4 +231,4 @@
 
   init();
 
-}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic));
+}(tiles, tileSheet, player, playerSheet, addPlayer, whichRow, whichColumn, movePlayer, startMusic, playerAtDoor, playerDeath));
