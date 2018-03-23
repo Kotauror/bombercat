@@ -230,6 +230,7 @@
     }
 
     function handleComplete(event) {
+      alert("You have 5 bombs to get to the box")
       buildMap(level);
       addPlayer(board, player, 3, 2, 0);
       addDog(board, dog, 10, 8, 0);
