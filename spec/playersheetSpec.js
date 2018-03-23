@@ -53,10 +53,6 @@ describe("Playersheet", function(){
     it("WhichRow returns the row number of the player", function(){
       expect(whichRow(player)).toEqual(1)
     })
-
   })
-
-
-
-
+  
 })
