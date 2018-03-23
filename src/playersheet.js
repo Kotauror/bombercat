@@ -86,6 +86,17 @@
     }
   }
 
+  playerAtWolf = function(level) {
+    var playerRow = whichRow(player);
+    var playerColumn = whichColumn(player);
+    var wolfRow = whichRow(wolf);
+    var wolfColumn = whichColumn(wolf);
+    if (playerRow === wolfRow && playerColumn === wolfColumn) {
+      alert("Game Over\n\n Wolf caught the cat\n\n Click enter to play again");
+      location.reload();
+    }
+  }
+
   playerAtDoor = function(level){
     var playerRow = whichRow(player);
     var playerColumn = whichColumn(player);
