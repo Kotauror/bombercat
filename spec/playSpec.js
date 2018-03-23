@@ -7,9 +7,9 @@ describe('Play', function() {
     expect(playerSheet).toBeDefined()
   })
 
-  // it('addPlayer is defined', function(){
-  //   expect(addPlayer()).toBeDefined()
-  // })
+  it('addPlayer is defined', function(){
+    expect(addPlayer).toBeDefined()
+  })
   // it('whichColumn is defined', function(){
   //   expect(whichColumn()).toBeDefined()
   // })
