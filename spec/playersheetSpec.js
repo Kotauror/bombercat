@@ -32,8 +32,31 @@ describe("Playersheet", function(){
     })
   })
 
-  // it("whichColumn returns the player's location", function(){
-  //   expect(player.width).toBe(34)
-  // })
+  describe("Location Methods", function(){
+
+    var board
+    var tileSheet
+
+    beforeEach(function(){
+      board = jasmine.createSpyObj(board, ['addChild'])
+      tileSheet = jasmine.createSpyObj('tileSheet', {
+        '_frameWidth': 2,
+        '_frameHeight': 2
+      })
+      addPlayer(board, player, 1, 1, 1)
+    })
+
+    it("whichColumn returns the column number of the player", function(){
+      expect(whichColumn(player)).toEqual(1)
+    })
+
+    it("WhichRow returns the row number of the player", function(){
+      expect(whichRow(player)).toEqual(1)
+    })
+
+  })
+
+
+
 
 })
