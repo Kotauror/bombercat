@@ -2,6 +2,8 @@
 
 Week 9 project at Makers Academy. Building Bomberman arcade game in JavaScript.
 
+Project team: [Ben](https://github.com/BenChallenor), [Justyna](https://github.com/Kotauror), [Laura](www.github.com/lwkchan), [Noel](https://github.com/noel1uk) and [Steve](https://github.com/stilley85)
+
 In sum: a game with a cat which moves around a map and drops bombs to get to the other side.
 
 ## How to use
