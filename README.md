@@ -53,6 +53,8 @@ I would like to have losing conditions
 
 <img src="images/screenshot.jpg" width="600px">
 
+<img src="images/game-over-screenshot.png" width="600px">
+
 ## Key learnings
 
 * Learning a new JavaScript library (CreateJS) and how to test it
