@@ -49,6 +49,10 @@ I would like to have losing conditions
 
 4. One of our biggest challenges was working out how to test the code. We ended up doing this by encapsulating each part and testing these as we went along
 
+## Screenshot
+
+<img src="images/screenshot.jpg" width="600px">
+
 ## Key learnings
 
 * Learning a new JavaScript library (CreateJS) and how to test it
