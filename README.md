@@ -51,6 +51,10 @@ I would like to have losing conditions
 
 ## Screenshot
 
+<img src="images/screenshot.jpg" width="600px">
+
+<img src="images/game-over-screenshot.png" width="600px">
+
 ## Design of code  
 
 ##### Play module
