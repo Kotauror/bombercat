@@ -51,9 +51,49 @@ I would like to have losing conditions
 
 ## Screenshot
 
-<img src="images/screenshot.jpg" width="600px">
+## Design of code  
 
-<img src="images/game-over-screenshot.png" width="600px">
+##### Play module
+methods:
+
+`buildMap` - builds a map of tiles, according to the tileSheet
+`refreshLocation` - rebuilds the map according to the current state of game
+`detectKeys` - detects key pressed by the user
+`startMusic` - starts playing the music
+`handleComplete` - loads the game when all components are ready
+
+##### PlayerSheet module
+methods:
+
+`addPlayer` - creates a player
+`whichColumn` - tells in which column the player is at a given moment
+`whichRow` - tells in which row the player is at a given moment
+`movePlayer` - moves the player
+`playerAtDog` - tells if the player touched the dog
+`playerAtWolf` - tells if the player touched the wolf
+`playerAtDoor` - tells if the player managed to get to the door
+`playerDeath` - tells if the player is dead or not
+
+##### DogSheet and WolfSheet modules
+methods:
+
+`addDog` - creates a dog
+`whichColumn` - tells in which column the dog is at a given moment
+`whichRow` - tells in which row the dog is at a given moment
+`moveDog` - moves the dog
+
+##### TileSheet
+
+creates SpriteSheet and BitMapAnimation according to tiles image
+
+##### Maps module
+
+`maps` - an array of available maps
+
+##### Music module
+
+`sound` - contains information about sound
+`play` - plays the sound
 
 ## Key learnings
 
